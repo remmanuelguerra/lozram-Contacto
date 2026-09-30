@@ -1,0 +1,12 @@
+[build]
+  publish = "public"
+
+[functions]
+  directory = "netlify/functions"
+  included_files = ["private/pages/**"]
+
+[[headers]]
+  for = "/catalogo.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"

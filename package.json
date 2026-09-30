@@ -1,0 +1,19 @@
+{
+  "name": "contacto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node scripts/dev-server.mjs",
+    "render": "node scripts/render-pdf.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.9",
+    "page-flip": "^2.0.7",
+    "pdfjs-dist": "^4.10.38"
+  }
+}

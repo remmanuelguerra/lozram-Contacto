@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Catálogo · Lozram Inmobiliaria</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --yel:#FDAB06; }
+  html, body { height:100%; }
+  body {
+    font-family:'Barlow Condensed',sans-serif; color:#fff;
+    background:radial-gradient(ellipse 90% 70% at 60% 30%, #2a2410 0%, #141418 60%, #0a0a0c 100%);
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  header {
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:10px 14px; flex-shrink:0;
+  }
+  header h1 { font-family:'Anton',sans-serif; font-size:16px; letter-spacing:2px; color:var(--yel); font-weight:400; }
+  .hbtn {
+    background:#2a2a35; color:#fff; border:1px solid #3a3a4a; border-radius:9px;
+    padding:7px 12px; font:700 13px 'Barlow Condensed',sans-serif; text-decoration:none; cursor:pointer;
+  }
+  main { flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:0 10px; }
+  #book { visibility:hidden; }
+  #book .page { background:#fff; }
+  #book .page img { width:100%; height:100%; display:block; object-fit:cover; pointer-events:none; user-select:none; -webkit-user-drag:none; }
+  footer {
+    display:flex; align-items:center; justify-content:center; gap:16px;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom)); flex-shrink:0;
+  }
+  .nav {
+    width:44px; height:44px; border-radius:50%; border:none; cursor:pointer;
+    background:linear-gradient(135deg,var(--yel),#e69200); color:#141418; font-size:22px; font-weight:700;
+  }
+  .nav:disabled { opacity:.35; cursor:default; }
+  #counter { font-size:15px; letter-spacing:1px; min-width:70px; text-align:center; color:#ddd; }
+  #msg { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; font-size:18px; color:#ccc; pointer-events:none; }
+  #msg[hidden] { display:none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>CATÁLOGO DE PROPIEDADES</h1>
+  <div>
+    <a class="hbtn" href="/">Inicio</a>
+    <button class="hbtn" id="logout" type="button">Salir</button>
+  </div>
+</header>
+<main><div id="book"></div></main>
+<footer>
+  <button class="nav" id="prev" type="button" aria-label="Anterior">‹</button>
+  <span id="counter"></span>
+  <button class="nav" id="next" type="button" aria-label="Siguiente">›</button>
+</footer>
+<p id="msg">Cargando catálogo…</p>
+
+<script src="/vendor/page-flip.browser.js"></script>
+<script>
+(async function () {
+  var msg = document.getElementById('msg');
+  var res = await fetch('/api/meta', { credentials: 'same-origin' });
+  if (res.status === 401) { location.replace('/'); return; }
+  if (!res.ok) { msg.textContent = 'No se pudo cargar el catálogo.'; return; }
+  var meta = await res.json();
+
+  var book = document.getElementById('book');
+  for (var i = 1; i <= meta.pages; i++) {
+    var d = document.createElement('div');
+    d.className = 'page';
+    var img = document.createElement('img');
+    img.src = '/api/page/' + i;
+    img.alt = 'Página ' + i;
+    img.draggable = false;
+    d.appendChild(img);
+    book.appendChild(d);
+  }
+
+  // Tamaño de página máximo que cabe en pantalla (doble página en escritorio, simple en móvil)
+  var ratio = meta.height / meta.width;
+  var main = document.querySelector('main');
+  var availW = main.clientWidth, availH = main.clientHeight;
+  var wide = availW > 900;
+  var pageW = Math.min(wide ? availW / 2 : availW, availH / ratio);
+  var pf = new St.PageFlip(book, {
+    width: Math.floor(pageW), height: Math.floor(pageW * ratio),
+    size: 'fixed', usePortrait: !wide, showCover: true,
+    maxShadowOpacity: 0.5, mobileScrollSupport: false, flippingTime: 800
+  });
+  pf.loadFromHTML(document.querySelectorAll('.page'));
+  book.style.visibility = 'visible';
+  msg.hidden = true;
+
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  var counter = document.getElementById('counter');
+  function update() {
+    var p = pf.getCurrentPageIndex(), total = pf.getPageCount();
+    counter.textContent = (p + 1) + ' / ' + total;
+    prev.disabled = p <= 0;
+    next.disabled = p >= total - 1;
+  }
+  pf.on('flip', update);
+  update();
+  prev.addEventListener('click', function () { pf.flipPrev(); });
+  next.addEventListener('click', function () { pf.flipNext(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') pf.flipPrev();
+    if (e.key === 'ArrowRight') pf.flipNext();
+  });
+  document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+
+  document.getElementById('logout').addEventListener('click', async function () {
+    await fetch('/api/logout', { method: 'POST' });
+    location.replace('/');
+  });
+})();
+</script>
+</body>
+</html>
