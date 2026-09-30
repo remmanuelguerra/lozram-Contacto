@@ -1,16 +1,22 @@
 // API del catálogo interno: login/logout/sesión y entrega de páginas protegidas.
-// Credenciales y secreto viven en variables de entorno de Netlify (nunca en el código):
-//   CATALOG_USER, CATALOG_PASS, AUTH_SECRET
+// Credenciales fijas (el repositorio debe permanecer PRIVADO). Si se definen las variables de
+// entorno CATALOG_USER / CATALOG_PASS / AUTH_SECRET en Netlify, tienen prioridad sobre estas.
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+
+const CATALOG_USER = process.env.CATALOG_USER || 'lozram';
+const CATALOG_PASS = process.env.CATALOG_PASS || 'ramloz123';
+// Clave de firma de sesión derivada de las credenciales: si cambian, las sesiones anteriores dejan de valer.
+const AUTH_SECRET = process.env.AUTH_SECRET ||
+  crypto.createHash('sha256').update(`lozram|${CATALOG_USER}|${CATALOG_PASS}`).digest('hex');
 
 const COOKIE = 'lz_session';
 const SESSION_SECONDS = 8 * 60 * 60;
 
 const sha = (s) => crypto.createHash('sha256').update(String(s)).digest();
 const safeEqual = (a, b) => crypto.timingSafeEqual(sha(a), sha(b));
-const sign = (payload) => crypto.createHmac('sha256', process.env.AUTH_SECRET).update(payload).digest('base64url');
+const sign = (payload) => crypto.createHmac('sha256', AUTH_SECRET).update(payload).digest('base64url');
 
 function makeToken() {
   const exp = String(Math.floor(Date.now() / 1000) + SESSION_SECONDS);
@@ -37,16 +43,13 @@ const cookieHeader = (value, maxAge) =>
 const pagesDir = () => path.join(process.cwd(), 'private', 'pages');
 
 export default async (req) => {
-  if (!process.env.AUTH_SECRET || !process.env.CATALOG_USER || !process.env.CATALOG_PASS) {
-    return json({ error: 'Servidor sin configurar' }, 500);
-  }
   const route = new URL(req.url).pathname.replace(/^\/api\/?/, '');
 
   if (route === 'login' && req.method === 'POST') {
     let body = {};
     try { body = await req.json(); } catch { /* cuerpo inválido */ }
-    const ok = safeEqual(body.user ?? '', process.env.CATALOG_USER) &
-               safeEqual(body.pass ?? '', process.env.CATALOG_PASS);
+    const ok = safeEqual(body.user ?? '', CATALOG_USER) &
+               safeEqual(body.pass ?? '', CATALOG_PASS);
     if (!ok) {
       await new Promise((r) => setTimeout(r, 1000)); // frena fuerza bruta
       return json({ error: 'Usuario o contraseña incorrectos' }, 401);
