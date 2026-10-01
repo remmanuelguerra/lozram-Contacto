@@ -22,9 +22,10 @@ http.createServer(async (req, res) => {
     const chunks = [];
     for await (const c of req) chunks.push(c);
     const body = chunks.length ? Buffer.concat(chunks) : undefined;
-    // Las cookies "Secure" no se guardan en http://localhost en todos los navegadores; Chrome/Firefox sí lo permiten.
     const r = await api(new Request(url, { method: req.method, headers: req.headers, body: ['GET', 'HEAD'].includes(req.method) ? undefined : body }));
-    res.writeHead(r.status, Object.fromEntries(r.headers));
+    const headers = Object.fromEntries(r.headers);
+    if (headers['set-cookie']) headers['set-cookie'] = headers['set-cookie'].replace('; Secure', ''); // http local
+    res.writeHead(r.status, headers);
     return res.end(Buffer.from(await r.arrayBuffer()));
   }
 

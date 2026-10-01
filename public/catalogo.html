@@ -3,26 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#162757">
 <meta name="robots" content="noindex, nofollow">
 <title>Catálogo · Lozram Inmobiliaria</title>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@600;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  :root { --yel:#FDAB06; }
+  :root { --navy:#162757; --brown:#766759; --gold:#ab8f63; --cream:#e8e3dd; --ink:#1e1f2a; --tan:#b19e88; --serif:'Abril Fatface',serif; --sans:'Open Sans',sans-serif; }
   html, body { height:100%; }
   body {
-    font-family:'Barlow Condensed',sans-serif; color:#fff;
-    background:radial-gradient(ellipse 90% 70% at 60% 30%, #2a2410 0%, #141418 60%, #0a0a0c 100%);
+    font-family:var(--sans); color:var(--cream);
+    background:radial-gradient(ellipse 90% 70% at 60% 25%, #1f3a7a 0%, var(--navy) 55%, var(--ink) 100%);
     display:flex; flex-direction:column; overflow:hidden;
   }
   header {
     display:flex; align-items:center; justify-content:space-between; gap:10px;
     padding:10px 14px; flex-shrink:0;
   }
-  header h1 { font-family:'Anton',sans-serif; font-size:16px; letter-spacing:2px; color:var(--yel); font-weight:400; }
+  header img { height:34px; width:auto; display:block; }
+  header h1 { font-family:var(--serif); font-size:15px; letter-spacing:1.5px; color:var(--gold); font-weight:400; text-align:center; flex:1; }
+  @media (max-width:520px) { header h1 { display:none; } }
   .hbtn {
-    background:#2a2a35; color:#fff; border:1px solid #3a3a4a; border-radius:9px;
-    padding:7px 12px; font:700 13px 'Barlow Condensed',sans-serif; text-decoration:none; cursor:pointer;
+    background:rgba(232,227,221,.08); color:var(--cream); border:1px solid var(--tan); border-radius:9px;
+    padding:7px 12px; font:700 13px var(--sans); text-decoration:none; cursor:pointer;
   }
   main { flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:0 10px; }
   #book { visibility:hidden; }
@@ -34,16 +37,17 @@
   }
   .nav {
     width:44px; height:44px; border-radius:50%; border:none; cursor:pointer;
-    background:linear-gradient(135deg,var(--yel),#e69200); color:#141418; font-size:22px; font-weight:700;
+    background:linear-gradient(135deg,var(--gold),var(--tan)); color:var(--navy); font-size:22px; font-weight:700;
   }
   .nav:disabled { opacity:.35; cursor:default; }
-  #counter { font-size:15px; letter-spacing:1px; min-width:70px; text-align:center; color:#ddd; }
-  #msg { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; font-size:18px; color:#ccc; pointer-events:none; }
+  #counter { font-family:var(--serif); font-size:16px; letter-spacing:1px; min-width:70px; text-align:center; color:var(--tan); }
+  #msg { font-family:var(--serif); position:fixed; inset:0; display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--tan); pointer-events:none; }
   #msg[hidden] { display:none; }
 </style>
 </head>
 <body>
 <header>
+  <img src="/logo-blanco.png" alt="Lozram" width="940" height="292">
   <h1>CATÁLOGO DE PROPIEDADES</h1>
   <div>
     <a class="hbtn" href="/">Inicio</a>
