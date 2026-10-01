@@ -50,10 +50,9 @@ body::before {
   color:var(--tan); font-weight:700; text-transform:uppercase; line-height:1.5;
 }
 
-.contact-label {
-  font-family:var(--serif); font-size:17px; letter-spacing:1.5px;
-  color:var(--gold); text-align:center; margin-top:4px;
-}
+.contact-cta { text-align:center; margin-top:4px; }
+.cta-title { font-weight:700; font-size:13.5px; line-height:1.35; color:var(--cream); }
+.cta-sub { font-size:11.5px; line-height:1.4; color:var(--tan); margin-top:5px; }
 
 /* BOTONES ACCIÓN */
 .btn {
@@ -112,7 +111,7 @@ body::before {
   max-height:0; overflow:hidden;
   transition:max-height .3s ease;
 }
-.serv-grid.open { display:flex; max-height:900px; }
+.serv-grid.open { display:flex; max-height:3500px; }
 .serv-item {
   background:rgba(232,227,221,0.07);
   border-radius:9px;
@@ -136,8 +135,11 @@ body::before {
   max-height:0; overflow:hidden; transition:max-height .25s ease;
 }
 .serv-item:hover .ssub-wrap,
-.serv-item.open .ssub-wrap { max-height:90px; }
+.serv-item.open .ssub-wrap { max-height:700px; }
 .ssub  { font-size:11px; color:var(--tan); line-height:1.35; padding:0 10px 9px 34px; }
+.ssub ul { margin:6px 0 0; padding-left:16px; }
+.ssub li { margin:3px 0; }
+.ssub b { color:var(--cream); font-weight:600; }
 
 /* REDES — siempre visibles */
 .redes-label {
@@ -162,6 +164,7 @@ body::before {
   border-radius:10px; padding:10px 12px; text-align:center;
   color:var(--cream); font-size:11.5px; line-height:1.45;
 }
+.promo .btn-vcard { margin-top:10px; }
 .promo strong { color:var(--gold); font-family:var(--serif); font-weight:400; font-size:15px; letter-spacing:.5px; display:block; margin-bottom:2px; }
 .footer-note { text-align:center; font-size:10px; color:var(--brown); margin-top:4px; cursor:default; -webkit-tap-highlight-color:transparent; user-select:none; }
 
@@ -192,6 +195,20 @@ body::before {
   </div>
   <p class="tagline">Compra · Venta · Renta · Inversión</p>
 
+  <!-- Promo contacto -->
+  <div class="promo">
+    <strong>🏠 ¡Agenda tu asesoría gratuita!</strong>
+    Guarda nuestro contacto y da el primer paso hacia tu próxima propiedad
+    <a class="btn btn-vcard" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3ALozram%20Inmobiliaria%0AORG%3ALozram%20Inmobiliaria%0ATEL%3BTYPE%3DCELL%3A%2B528180981242%0AURL%3Ahttps%3A%2F%2Fwww.instagram.com%2Flozram.inmobiliaria%0AEND%3AVCARD" download="Lozram-Inmobiliaria.vcf">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Guardar contacto
+    </a>
+  </div>
+
+  <div class="contact-cta">
+    <p class="cta-title">📲 ¿Necesitas realizar alguno de estos trámites o estás pensando en comprar, vender, rentar o invertir?</p>
+    <p class="cta-sub">Antes de dar el siguiente paso, asesórate. Una buena decisión inmobiliaria comienza mucho antes de firmar.</p>
+  </div>
+
   <!-- SERVICIOS -->
   <button class="serv-toggle" id="servToggle" type="button">
     <span class="serv-label">👆 TOCA AQUÍ PARA VER NUESTROS SERVICIOS</span>
@@ -203,61 +220,81 @@ body::before {
         <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="sname">Compra de propiedades</div>
       </div>
-      <div class="ssub-wrap"><div class="ssub">Búsqueda y selección de inmuebles según tus necesidades, presupuesto y objetivos</div></div>
+      <div class="ssub-wrap"><div class="ssub">Te ayudamos a encontrar propiedades que realmente se ajusten a lo que buscas: ubicación, presupuesto, necesidades y objetivos. Analizamos las opciones disponibles y te acompañamos para que no termines comprando solo por emoción, sino tomando una decisión informada.</div></div>
     </div>
     <div class="serv-item">
       <div class="serv-head">
         <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="sname">Venta de propiedades</div>
       </div>
-      <div class="ssub-wrap"><div class="ssub">Apoyo en la promoción, negociación y cierre de operaciones</div></div>
+      <div class="ssub-wrap"><div class="ssub">Una propiedad bien vendida no depende únicamente de publicarla. Te apoyamos con la estrategia de promoción, análisis del precio, negociación con posibles compradores y seguimiento de la operación, para vender en condiciones convenientes y con mayor seguridad.</div></div>
     </div>
     <div class="serv-item">
       <div class="serv-head">
         <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="sname">Renta de inmuebles</div>
       </div>
-      <div class="ssub-wrap"><div class="ssub">Asesoría para propietarios e interesados en rentar una propiedad</div></div>
+      <div class="ssub-wrap"><div class="ssub">Si eres propietario, te ayudamos a poner tu inmueble en el mercado, encontrar prospectos y llevar el proceso de renta de manera más ordenada. Si buscas rentar, te orientamos para identificar opciones que se adapten a tu presupuesto y necesidades.</div></div>
     </div>
     <div class="serv-item">
       <div class="serv-head">
         <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="sname">Inversión inmobiliaria</div>
       </div>
-      <div class="ssub-wrap"><div class="ssub">Análisis de oportunidades para generar patrimonio y obtener rendimientos</div></div>
+      <div class="ssub-wrap"><div class="ssub">No todas las propiedades son una buena inversión. Analizamos ubicación, precio, potencial de crecimiento, condiciones del inmueble, posibilidades de renta y estrategia de salida para identificar oportunidades que contribuyan a crear patrimonio y generar rendimientos.</div></div>
     </div>
     <div class="serv-item">
       <div class="serv-head">
         <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="sname">Flipping inmobiliario</div>
       </div>
-      <div class="ssub-wrap"><div class="ssub">Identificación, adquisición, remodelación y estrategia de reventa</div></div>
+      <div class="ssub-wrap"><div class="ssub">Buscamos propiedades con potencial de transformación y reventa. Analizamos oportunidades que adquieran valor mediante remodelación, mejoras o una estrategia comercial adecuada: dónde hay margen, qué cambios generan valor y cómo plantear la salida.</div></div>
     </div>
     <div class="serv-item">
       <div class="serv-head">
         <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="sname">Trámites notariales</div>
       </div>
-      <div class="ssub-wrap"><div class="ssub">Acompañamiento y gestión para formalizar operaciones inmobiliarias</div></div>
+      <div class="ssub-wrap"><div class="ssub">Te acompañamos en los procesos necesarios para formalizar correctamente una operación, coordinando y dando seguimiento a la documentación y trámites ante notaría. Lo que no se revisa a tiempo puede convertirse en un problema después.</div></div>
     </div>
     <div class="serv-item">
       <div class="serv-head">
         <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="sname">Asesoría legal inmobiliaria</div>
       </div>
-      <div class="ssub-wrap"><div class="ssub">Mayor seguridad jurídica en compras, ventas, rentas y más</div></div>
+      <div class="ssub-wrap"><div class="ssub">Orientación en los aspectos legales de compras, ventas, rentas y otras operaciones inmobiliarias, con el objetivo de identificar posibles riesgos, aclarar dudas y brindar mayor seguridad jurídica.</div></div>
     </div>
     <div class="serv-item">
       <div class="serv-head">
         <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="sname">Acompañamiento integral</div>
       </div>
-      <div class="ssub-wrap"><div class="ssub">En cada etapa de la operación, resolviendo dudas y facilitando decisiones</div></div>
+      <div class="ssub-wrap"><div class="ssub">Desde el primer contacto hasta la conclusión de la operación, tienes acompañamiento para resolver dudas, revisar alternativas y entender qué sigue en cada etapa. No buscamos solo cerrar una operación: buscamos que entiendas lo que haces antes de firmar.</div></div>
+    </div>
+    <div class="serv-item">
+      <div class="serv-head">
+        <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="sname">Infonavit</div>
+      </div>
+      <div class="ssub-wrap"><div class="ssub">También te ayudamos con diferentes trámites y consultas relacionadas con tu cuenta:<ul><li><b>Recuperación de contraseña</b>: apoyo para recuperar el acceso a tu cuenta.</li><li><b>Desvinculación o desbloqueo de cuenta</b>: orientación para resolver problemas de acceso o vinculación.</li><li><b>Corrección de RFC y CURP</b>: apoyo en la actualización o corrección de tus datos.</li><li><b>Registro de perfil de Mi Cuenta Infonavit</b>: asistencia para crear y configurar tu acceso.</li><li><b>Consulta de saldo</b>: conoce cuánto tienes disponible y revisa la información de tu crédito.</li><li><b>Estado de cuenta mensual e histórico</b>: consulta y revisión de movimientos y antecedentes.</li><li><b>Aviso de retención</b>: orientación para obtener y revisar este documento.</li><li><b>Constancia de intereses</b>: apoyo para consultar y obtener tu constancia correspondiente.</li></ul></div></div>
+    </div>
+    <div class="serv-item">
+      <div class="serv-head">
+        <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="sname">IMSS</div>
+      </div>
+      <div class="ssub-wrap"><div class="ssub">Te apoyamos con trámites y consultas como:<ul><li><b>Semanas cotizadas</b>: consulta y revisión de tus semanas registradas.</li><li><b>Vigencia de derechos</b>: verifica tu situación actual ante el IMSS.</li><li><b>Asignación de NSS</b>: apoyo con la obtención o localización de tu Número de Seguridad Social.</li></ul></div></div>
+    </div>
+    <div class="serv-item">
+      <div class="serv-head">
+        <div class="scheck"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#141418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="sname">Otros trámites</div>
+      </div>
+      <div class="ssub-wrap"><div class="ssub">También podemos apoyarte con la gestión y orientación para obtener:<ul><li><b>Constancia de Situación Fiscal</b></li><li><b>Localización de AFORE</b></li><li><b>Actas de nacimiento</b></li><li><b>Actas de defunción</b></li><li><b>Actas de divorcio</b></li><li><b>Actas de matrimonio</b></li></ul></div></div>
     </div>
   </div>
 
   <!-- Contacto: WhatsApp y llamada al mismo nivel -->
-  <p class="contact-label">📲 CONTÁCTANOS</p>
   <div class="row">
     <a class="btn btn-wa" href="https://wa.me/528180981242?text=Hola%2C%20me%20interesa%20una%20asesor%C3%ADa%20inmobiliaria%2C%20%C2%BFme%20pueden%20dar%20informaci%C3%B3n%3F">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.478 2 12c0 1.85.503 3.66 1.457 5.24L2 22l4.897-1.418A9.95 9.95 0 0012 22c5.523 0 10-4.478 10-10S17.523 2 12.001 2zm0 18.15a8.13 8.13 0 01-4.15-1.14l-.297-.176-3.02.874.85-2.98-.194-.307A8.15 8.15 0 1120.15 12a8.16 8.16 0 01-8.149 8.15z"/></svg>
@@ -267,17 +304,6 @@ body::before {
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       Llamar
     </a>
-  </div>
-
-  <!-- Guardar contacto -->
-  <a class="btn btn-vcard" href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3ALozram%20Inmobiliaria%0AORG%3ALozram%20Inmobiliaria%0ATEL%3BTYPE%3DCELL%3A%2B528180981242%0AURL%3Ahttps%3A%2F%2Fwww.instagram.com%2Flozram.inmobiliaria%0AEND%3AVCARD" download="Lozram-Inmobiliaria.vcf">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Guardar contacto
-  </a>
-
-  <!-- Promo contacto -->
-  <div class="promo">
-    <strong>🏠 ¡Agenda tu asesoría gratuita!</strong>
-    Guarda nuestro contacto y da el primer paso hacia tu próxima propiedad
   </div>
 
   <!-- REDES -->

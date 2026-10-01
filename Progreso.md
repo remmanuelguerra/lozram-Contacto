@@ -1,6 +1,6 @@
 # Progreso: Lozram Inmobiliaria (tarjeta de contacto + catálogo interno)
 
-Última actualización: 2026-09-30
+Última actualización: 2026-10-01
 
 ## Objetivo
 Página de contacto de Lozram Inmobiliaria con una sección oculta: al tocar un texto del pie se pide usuario y contraseña, y quien entra puede hojear el catálogo de propiedades (PDF) como un libro. Se publica en Netlify.
@@ -18,13 +18,10 @@ Página de contacto de Lozram Inmobiliaria con una sección oculta: al tocar un 
 - [x] Rediseño de `public/index.html` según `lozram-branding.pdf`: paleta (#162757, #766759, #ab8f63, #e8e3dd, #1e1f2a, #b19e88), tipografías Abril Fatface + Open Sans y logo blanco horizontal (`public/logo-blanco.png`).
 - [x] `public/catalogo.html` con el mismo branding; redes sociales con sus colores originales (Facebook, Instagram, TikTok).
 
+- [x] Sitio nuevo creado en Netlify desde el repositorio (branch `main`, build vacío, publish `public`, functions `netlify/functions`).
+- [x] Deploy terminado en **Published** con los cambios de branding.
+
 ## Pendiente
-- [ ] Crear el sitio nuevo en Netlify desde el repositorio (el sitio anterior es de subida manual y no se puede ligar a GitHub).
-  - Branch: `main`
-  - Build command: vacío
-  - Publish directory: `public`
-  - Functions directory: `netlify/functions`
-- [ ] Comprobar que el deploy termina en **Published**.
 - [ ] Probar en la URL real: login, libro, y que `/api/page/1` sin sesión diga "No autorizado".
 - [ ] Probar el libro en un celular real (todavía no se ha visto en un navegador).
 - [ ] Borrar el sitio viejo de Netlify y ponerle su nombre al nuevo (o mover el dominio propio, si lo tenía).
