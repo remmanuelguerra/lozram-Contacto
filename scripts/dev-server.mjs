@@ -4,9 +4,6 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 
-process.env.CATALOG_USER ??= 'admin';
-process.env.CATALOG_PASS ??= 'prueba123';
-process.env.AUTH_SECRET ??= 'secreto-solo-para-pruebas-locales-0123456789';
 
 const { default: api } = await import('../netlify/functions/api.mjs');
 const root = path.resolve('public');
@@ -37,5 +34,5 @@ http.createServer(async (req, res) => {
   fs.createReadStream(file).pipe(res);
 }).listen(8888, () => {
   console.log('Listo: http://localhost:8888');
-  console.log(`Usuario: ${process.env.CATALOG_USER}  Contraseña: ${process.env.CATALOG_PASS}`);
+  console.log('Usuario: lozram  Contraseña: ramloz123 (definidas en netlify/functions/api.mjs)');
 });

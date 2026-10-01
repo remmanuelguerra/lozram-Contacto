@@ -16,6 +16,7 @@ Página de contacto de Lozram Inmobiliaria con una sección oculta: al tocar un 
 - [x] Servidor local de pruebas (`npm run dev`, http://localhost:8888).
 - [x] Repositorio creado en GitHub Desktop, publicado como privado y con el push hecho.
 - [x] Rediseño de `public/index.html` según `lozram-branding.pdf`: paleta (#162757, #766759, #ab8f63, #e8e3dd, #1e1f2a, #b19e88), tipografías Abril Fatface + Open Sans y logo blanco horizontal (`public/logo-blanco.png`).
+- [x] `public/catalogo.html` con el mismo branding; redes sociales con sus colores originales (Facebook, Instagram, TikTok).
 
 ## Pendiente
 - [ ] Crear el sitio nuevo en Netlify desde el repositorio (el sitio anterior es de subida manual y no se puede ligar a GitHub).
